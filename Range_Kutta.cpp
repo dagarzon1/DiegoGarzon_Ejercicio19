@@ -68,16 +68,18 @@ void segundo_orden(double * y, int a, int b, double in, double in_d)
 	for(int i=1;i<N;i++)
 	{
 		x=x+h;
+
 		zk_1=fun( x,y[i-1] );
 		zk_2=fun( x + (h/2.0), y[i-1]+ ( ( h * zk_1 ) / 2.0) );
 		zk_3=fun( x + (h/2.0), y[i-1]+ ( ( h * zk_2 ) / 2.0) );
 		zk_4=fun( x+h,y[i-1]+( h * zk_3 ) );
-		z[i]=z[i-1]+( h/6.0 * ( zk_1+zk_4+( 2 * zk_2)+( 2 * zk_3 )) );
 		
 		k_1=funZ( x,z[i-1] );
 		k_2=funZ( x + (h/2.0), z[i-1]+ ( ( h * k_1 ) / 2.0) );
 		k_3=funZ( x + (h/2.0), z[i-1]+ ( ( h * k_2 ) / 2.0) );
 		k_4=funZ( x+h,z[i-1]+( h * k_3 ) );
+
+		z[i]=z[i-1]+( h/6.0 * ( zk_1+zk_4+( 2 * zk_2)+( 2 * zk_3 )) );
 		y[i]=y[i-1]+( h/6.0 * ( k_1+k_4+( 2 * k_2)+( 2 * k_3 )) );
 		
 		cout << x << " " << y[i] << " " << z[i] << endl;
